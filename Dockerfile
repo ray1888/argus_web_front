@@ -21,12 +21,12 @@ RUN cd /argus-web/app \
       && npm install \ 
       && npm run build \
       && cp -a dist/ /var/www/argusapp/ 
-#WORKDIR $phoneapp
+WORKDIR $phoneapp
 ## TODO : wait for the app_phone to fix the error for build  
-#RUN cd /argus-web/app_phone \
-#      && sh /argus-web/changehost.sh $phoneapp/src/service \
-#      && npm install \
-#      && npm run build \
-#      && cp -a dist/ /var/www/argusphone/ 
+RUN cd /argus-web/app_phone \
+     && sh /argus-web/changehost.sh $phoneapp/src/service \
+     && npm install \
+     && npm run build \
+     && cp -a dist/ /var/www/argusphone/ 
 EXPOSE 80
 CMD ["nginx","-g","start"]
