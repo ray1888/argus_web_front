@@ -20,14 +20,14 @@ WORKDIR $app
 # use cnpm for localbuild test
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN cd /argus-web/app \
-      && sh /argus-web/changehost.sh $app/src/service \
+      #&& sh /argus-web/changehost.sh $app/src/service \
       && cnpm install \ 
       && cnpm run build \
       && cp -a dist/ /var/www/argusapp/ 
 WORKDIR $phoneapp
 ## TODO : wait for the app_phone to fix the error for build  
 RUN cd /argus-web/app_phone \
-     && sh /argus-web/changehost.sh $phoneapp/src/service \
+     #&& sh /argus-web/changehost.sh $phoneapp/src/service \
      && cnpm install \
      && cnpm run build \
      && cp -a dist/ /var/www/argusphone/ 
