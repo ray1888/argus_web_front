@@ -17,6 +17,8 @@ RUN nginx -t
 ADD ./docker/changehost.sh /argus-web/ 
 ##TODO change the host of app and app_phone with changehost
 WORKDIR $app
+# use cnpm for localbuild test
+#RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN cd /argus-web/app \
       && sh /argus-web/changehost.sh $app/src/service \
       && npm install \ 
