@@ -10,7 +10,7 @@ RUN mkdir -p /argus-web/app \
 ## TODO: copy the code from hard disk temporary , to be change into git clone 
 ADD app/ /argus-web/app
 ADD app_phone/ /argus-web/app_phone/
-RUN ls -al /etc/nginx/sites-enabled
+# RUN ls -al /etc/nginx/sites-enabled
 ## Adding the conf of nginx site and the changehost script for webpack building 
 ADD ./docker/nginx.conf /etc/nginx/sites-enabled/  
 ADD ./docker/changehost.sh /argus-web/ 
@@ -21,11 +21,12 @@ RUN cd /argus-web/app \
       && npm install \ 
       && npm run build \
       && cp -a dist/ /var/www/argusapp/ 
-WORKDIR $phoneapp
-RUN cd /argus-web/app_phone \
-      && sh /argus-web/changehost.sh $phoneapp/src/service \
-      && npm install \
-      && npm run build \
-      && cp -a dist/ /var/www/argusphone/ 
+#WORKDIR $phoneapp
+## TODO : wait for the app_phone to fix the error for build  
+#RUN cd /argus-web/app_phone \
+#      && sh /argus-web/changehost.sh $phoneapp/src/service \
+#      && npm install \
+#      && npm run build \
+#      && cp -a dist/ /var/www/argusphone/ 
 EXPOSE 80
 CMD ["nginx","-g","start"]
