@@ -13,6 +13,7 @@ ADD app_phone/ /argus-web/app_phone/
 # RUN ls -al /etc/nginx/sites-enabled
 ## Adding the conf of nginx site and the changehost script for webpack building 
 ADD ./docker/nginx.conf /etc/nginx/sites-enabled/  
+RUN nginx -t 
 ADD ./docker/changehost.sh /argus-web/ 
 ##TODO change the host of app and app_phone with changehost
 WORKDIR $app
@@ -29,4 +30,4 @@ RUN cd /argus-web/app_phone \
      && npm run build \
      && cp -a dist/ /var/www/argusphone/ 
 EXPOSE 80
-CMD ["nginx","-g","daemon off"]
+CMD nginx -g 'daemon off;'
