@@ -29,4 +29,4 @@ RUN cd /argus-web/app_phone \
      && npm run build \
      && cp -a dist/ /var/www/argusphone/ 
 EXPOSE 80
-CMD ["nginx","-g","start"]
+CMD ["nginx","-g","daemon off"]
