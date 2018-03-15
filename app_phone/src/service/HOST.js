@@ -5,7 +5,7 @@
 
 let HOST = '$API_HOST';
 if (process.env.NODE_ENV === 'production') {
-	HOST = '';
+	HOST = '$API_HOST';
 }
 
 export {
