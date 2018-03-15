@@ -33,5 +33,5 @@ RUN cd /argus-web/app_phone \
      && cnpm run build \
      && cp -a dist/ /var/www/argusphone/ \
      && rm node_modules/ -rf
-EXPOSE 80
+EXPOSE 80 800 8000
 CMD nginx -g 'daemon off;'
