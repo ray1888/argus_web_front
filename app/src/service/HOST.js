@@ -4,9 +4,9 @@
         //export const HOST = '/mylocal' //前端代理服务器
 
 
-         let HOST = '$API_HOST';
+         let HOST = 'mylocal';
          if (process.env.NODE_ENV === 'production') {
-           HOST = '';
+           HOST = 'mylocal';
          }
          export {
            HOST
