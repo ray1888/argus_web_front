@@ -23,13 +23,15 @@ RUN cd /argus-web/app \
       #&& sh /argus-web/changehost.sh $app/src/service \
       && cnpm install \ 
       && cnpm run build \
-      && cp -a dist/ /var/www/argusapp/ 
+      && cp -a dist/ /var/www/argusapp/ \
+      && rm node_modules/ -rf
 WORKDIR $phoneapp
 ## TODO : wait for the app_phone to fix the error for build  
 RUN cd /argus-web/app_phone \
      #&& sh /argus-web/changehost.sh $phoneapp/src/service \
      && cnpm install \
      && cnpm run build \
-     && cp -a dist/ /var/www/argusphone/ 
+     && cp -a dist/ /var/www/argusphone/ \
+     && rm node_modules/ -rf
 EXPOSE 80
 CMD nginx -g 'daemon off;'
